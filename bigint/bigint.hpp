@@ -6,8 +6,7 @@
 class	bigint
 {
 	public:
-		bigint() : _big("0") {};
-		bigint(unsigned int nbr) : _big(std::to_string(nbr)) {};
+		bigint(unsigned int nbr = 0) : _big(std::to_string(nbr)) {};
 		bigint(const bigint &other) : _big(other._big) {};
 
 		std::string	getBig() const { return (_big); };
