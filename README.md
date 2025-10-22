@@ -71,3 +71,74 @@ std::ostream	&operator<<(std::ostream &out, const bigint &other);
 
 # vect2 - Vector 2D
 
+### 📝 Subject Summary
+The goal of this exercise is to create a simple **2D mathematical vector** class that supports basic arithmetic and comparison operations.
+
+This exercise implements a **[vect2 class](https://github.com/flmarsou/42nice-exam05/blob/main/vect2/vect2.hpp)** that stores two integers (***x** and **y***) handling **indexing**, **arithmetics**, and **comparisons** through operators.
+```cpp
+class	vect2
+{
+	public:
+		vect2(int x = 0, int y = 0) : _x(x), _y(y) {};
+		vect2(const vect2 &other) : _x(other._x), _y(other._y) {};
+		vect2	&operator=(const vect2 &other);
+
+		// Accesses
+		int	operator[](int index) const;
+		int	&operator[](int index);
+
+		// Increments & Decrements
+		vect2	&operator++();		// ++x
+		vect2	operator++(int);	// x++
+		vect2	&operator--();		// --x
+		vect2	operator--(int);	// x--
+
+		// Maths
+		vect2	operator+(const vect2 &other) const;
+		vect2	&operator+=(const vect2 &other);
+
+		vect2	operator-(const vect2 &other) const;
+		vect2	&operator-=(const vect2 &other);
+
+		vect2	operator*(int scalar) const;
+		vect2	&operator*=(int scalar);
+
+		// Unary Minus
+		vect2	operator-() const;
+
+		// Comparisons
+		bool	operator==(const vect2 &other) const;
+		bool	operator!=(const vect2 &other) const;
+
+	private:
+		int	_x;
+		int	_y;
+};
+
+// Maths
+vect2	operator*(int scalar, const vect2 &other);
+
+// Ostream
+std::ostream	&operator<<(std::ostream &out, const vect2 &other);
+```
+
+### 💡 Examples
+
+| Object        | Operation         | Result          |
+| ------------- | ----------------- | --------------- |
+| vect2(1, 2)   |                   | {1, 2}          |
+| vect2(1, 2)   | ++vect2           | {2, 3}          |
+| vect2(1, 2)   | vect2++           | {1, 2} -> {2, 3 |
+| vect2(1, 2)   | + vect2(1, 2)     | {2, 4}          |
+| vect2(1, 2)   | - vect2(1, 2)     | {0, 0}          |
+| vect2(0, 0)   | - vect2(1, 2)     | {-1, -2}        |
+| vect2(2, -3)  | * vect2(2, 2)     | {4, -6}         |
+| vect2(69, 42) | == vect2(-69, 42) | false           |
+| vect2(69, 42) | == vect2(69, 42)  | true            |
+| vect2(69, 42) | != vect2(69, 42)  | false           |
+| vect2(2, 0)   | -vect2            | {-2, 0}         |
+
+### 📑 Files
+- [x] [`vect2.hpp`](https://github.com/flmarsou/42nice-exam05/blob/main/vect2/vect2.hpp) - Header file
+- [x] [`vect2.cpp`](https://github.com/flmarsou/42nice-exam05/blob/main/vect2/vect2.cpp) - Code file
+- [x] [`main.cpp`](https://github.com/flmarsou/42nice-exam05/blob/main/vect2/main.cpp) - Given main with debug couts
