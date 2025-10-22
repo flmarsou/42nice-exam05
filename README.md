@@ -1,6 +1,6 @@
 # bigint - Arbitrary-Precision Arithmetic
 
-## 📝 Subject Summary
+### 📝 Subject Summary
 In computer science, a **bignum** (*or **big integer***) represents an integer of **arbitrary precision**, capable of storing values larger than `SIZE_MAX` or `UINT64_MAX` without loss of precision when speed does.<br>
 This is achieved by storing the number’s digits as a **string** (*or **array***), and performing manual arithmetic.<br>
 Mostly used for when the speed of arithmetic is not a limiting factor.
@@ -44,7 +44,7 @@ class	bigint
 std::ostream	&operator<<(std::ostream &out, const bigint &other);
 ```
 
-## 💡 Examples
+### 💡 Examples
 
 | Object      | Operation     | Result |
 | ----------- | ------------- | ------ |
@@ -62,7 +62,7 @@ std::ostream	&operator<<(std::ostream &out, const bigint &other);
 | bigint(1)   | >= bigint(1)  | true   |
 | bigint(9)   | < bigint(1)   | false  |
 
-## 📑 Files
+### 📑 Files
 - [x] [`bigint.hpp`](https://github.com/flmarsou/42nice-exam05/blob/main/bigint/bigint.hpp) - Header file
 - [x] [`bigint.cpp`](https://github.com/flmarsou/42nice-exam05/blob/main/bigint/bigint.cpp) - Code file
 - [x] [`bigint_commented.cpp`](https://github.com/flmarsou/42nice-exam05/blob/main/bigint/bigint_commented.cpp) - Code file (with explanations)
@@ -70,3 +70,4 @@ std::ostream	&operator<<(std::ostream &out, const bigint &other);
 
 
 # vect2 - Vector 2D
+
