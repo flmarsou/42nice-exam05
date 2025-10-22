@@ -21,7 +21,7 @@ static void	free_map(t_game *game)
 	}
 }
 
-static void	draw_map(t_game *game)
+static void	fill_map(t_game *game)
 {
 	char	buffer;
 	int		x = 0;
@@ -66,17 +66,11 @@ static int	count_neighbors(t_game game, int y, int x)
 	return (count);
 }
 
-static bool	play_game(t_game *game)
+static void	play_game(t_game *game)
 {
 	char	**new_map = malloc(game->height * sizeof(char *));
-	if (!new_map)
-		return (false);
 	for (int y = 0; y < game->height; ++y)
-	{
 		new_map[y] = malloc(game->width * sizeof(char *));
-		if (!new_map[y])
-			return (false);
-	}
 
 	for (int y = 0; y < game->height; ++y)
 	{
@@ -102,32 +96,21 @@ static bool	play_game(t_game *game)
 
 	free_map(game);
 	game->map = new_map;
-	return (true);
 }
 
-static bool	init_game(t_game *game, const char **argv)
+static void	init_game(t_game *game, const char **argv)
 {
 	game->width = atoi(argv[1]);
 	game->height = atoi(argv[2]);
 	game->iteration = atoi(argv[3]);
 
 	game->map = malloc(game->height * sizeof(char *));
-	if (!game->map)
-		return (false);
-
 	for (int y = 0; y < game->height; ++y)
 	{
 		game->map[y] = malloc(game->width * sizeof(char *));
-		if (!game->map[y])
-		{
-			free_map(game);
-			return (false);
-		}
 		for (int x = 0; x < game->width; ++x)
 			game->map[y][x] = ' ';
 	}
-
-	return (true);
 }
 
 int	main(const int argc, const char **argv)
@@ -137,20 +120,13 @@ int	main(const int argc, const char **argv)
 
 	t_game	game;
 
-	if (!init_game(&game, argv))
-		return (1);
-
-	draw_map(&game);
+	init_game(&game, argv);
+	fill_map(&game);
 
 	for (int i = 0; i < game.iteration; ++i)
-		if (!play_game(&game))
-		{
-			free_map(&game);
-			return (1);
-		}
+		play_game(&game);
 
 	print_map(game);
-
 	free_map(&game);
 
 	return (0);
